@@ -2,68 +2,69 @@
 #container {
 
 	position: absolute;
-	height: 100vh;
-	width: 100vw;
-	border: 10px solid black;
+	height: 600px;
+	width: 600px;
+	border: 1px solid black;
 }
 .car{
 	background-color: green;
 	width: 50px;
 	height: 20px;
 	position: absolute;
-	top: 80px;
-	left: 200px;
+	top: 70px;
+	left: 80px;
 	z-index: 500;
 }
 .street {
 	position: absolute;
 	background-color: lightblue;
-	border: solid black;
+	/*border: solid black;*/
 }
 .street1, .street3 {
-	height: 20%;
-	width: 80%;
+	height: 100px;
+	width: 400px;
 }
 .street2, .street4 {
-	height: 60%;
-	width: 10%;
+	height: 400px;
+	width: 100px;
 }
 .street1{
-	top: 0%;
-	left: 10%;
+	top: 0px;
+	left: 100px;
 }
 .street2 {
-	top: 20%;
-	right: 0%;
+	top: 100px;
+	right: 0px;
 }
 .street3 {
-	bottom: 0%;
-	right: 10%;
+	bottom: 0px;
+	right: 100px;
 }
 .street4 {
-	bottom: 20%;
-	left: 0%;
+	bottom: 100px;
+	left: 0px;
 }
 
 .intersection {
 	position: absolute;
-	height: 20%;
-	width: 10%;
+	height: 100px;
+	width: 100px;
 	background-color: red;
+	z-index: 100;
 }
 .intersection1{
-	top:0%;
-	left:0%;
+	top:0px;
+	left:0px;
 }
 .intersection2{
-	top:0%;
-	right:0%;
+	top:0px;
+	left:500px;
 }
 .intersection3{
-	bottom:0%;
-	right:0%;
+	top:500px;
+	left:500px;
 }
 .intersection4{
-	bottom:0%;
-	left:0%;
+	top:500px;
+	left:0px;
 }

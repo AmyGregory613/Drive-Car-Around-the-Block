@@ -24,8 +24,14 @@
     </div>
     <script type="text/javascript">
     let car = document.querySelector(".car");
-    var IntervalId;
+    var intervalId;
+
+
     // let intersection1 = document.querySelector(.intersection1);
+    // console.log('car current top ' + car.style.top);
+
+    // let intersection = getComputedStyle(intersection1).width.replace('px', '');
+
     // let intersection2 = document.querySelector(.intersection2);
     // let intersection3 = document.querySelector(intersection3);
     // let intersection4 = document.querySelector(intersection4);
@@ -33,12 +39,60 @@
     reset();
 
     function reset() {
-        car.style.top = "80px";
-        car.style.left = "200px"
+        car.style.top = "70px";
+        car.style.left = "80px"
     }
 
     function moveCar() {
+        console.log("moveCar");
         car.style.left = `${parseInt(car.style.left.replace("px"," ")) + 10}px`;
+        let carLeft = getComputedStyle(car).left.replace('px', '');
+        // STOP AT INTERSECTION
+        if (carLeft >= 450) {
+            stop();
+            waitToMove();
+            console.log('left = ' + carLeft);
+
+        }
+    }
+    //WAIT BEFORE MOVING INTO INTERSECTION
+    function waitToMove() {
+        console.log("waiting to move");
+        setTimeout(enterIntersection, 1000)
+    }
+    // Enter Intersection
+    function enterIntersection() {
+        console.log("Entering Intersection");
+        intervalId = setInterval(function() {
+            car.style.left = `${parseInt(car.style.left.replace("px"," ")) + 5}px`;
+            let carLeft = getComputedStyle(car).left.replace('px', '');
+            var i2 = document.querySelector(".intersection2");
+
+            var left = parseInt(getComputedStyle(i2).left.replace("px", " "));
+            var width = parseInt(getComputedStyle(i2).width.replace("px", " "));
+
+            var turnHere = (width / 4) + left;
+            	if(carLeft > (turnHere - 5) && carLeft < (turnHere + 5) )
+            	{
+            		console.log("turning");
+            		stop();
+            	}
+
+        }, 500);
+    }
+    // Move down
+    function moveCarDown() {
+        console.log("moveCarDown");
+        car.style.top = `${parseInt(car.style.top.replace("px"," ")) + 10}px`;
+        let carTop = getComputedStyle(car).top.replace('px', '');
+        
+        // STOP AT INTERSECTION
+        if (carTop >= 450) {
+            stop();
+            waitToMove();
+            console.log('position = ' + carTop);
+
+        }
     }
 
     function start() {
@@ -47,6 +101,7 @@
 
     function stop() {
         clearInterval(intervalId);
+
     }
     </script>
 </body>
