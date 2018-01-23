@@ -18,7 +18,7 @@
 .street {
 	position: absolute;
 	background-color: lightblue;
-	/*border: solid black;*/
+	
 }
 .street1, .street3 {
 	height: 100px;
@@ -34,14 +34,14 @@
 }
 .street2 {
 	top: 100px;
-	right: 0px;
+	left: 500px;
 }
 .street3 {
-	bottom: 0px;
-	right: 100px;
+	top: 500px;
+	left: 100px;
 }
 .street4 {
-	bottom: 100px;
+	top: 100px;
 	left: 0px;
 }
 
