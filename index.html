@@ -26,25 +26,15 @@
     let car = document.querySelector(".car");
     var intervalId;
 
-
-    // let intersection1 = document.querySelector(.intersection1);
-    // console.log('car current top ' + car.style.top);
-
-    // let intersection = getComputedStyle(intersection1).width.replace('px', '');
-
-    // let intersection2 = document.querySelector(.intersection2);
-    // let intersection3 = document.querySelector(intersection3);
-    // let intersection4 = document.querySelector(intersection4);
-
     reset();
 
     function reset() {
         car.style.top = "70px";
-        car.style.left = "80px"
+        car.style.left = "80px";
     }
 
-    function moveCar() {
-        console.log("moveCar");
+    function moveCarRight() {
+        console.log("moveCarRightight");
         car.style.left = `${parseInt(car.style.left.replace("px"," ")) + 10}px`;
         let carLeft = getComputedStyle(car).left.replace('px', '');
         // STOP AT INTERSECTION
@@ -55,6 +45,7 @@
 
         }
     }
+    
     //WAIT BEFORE MOVING INTO INTERSECTION
     function waitToMove(handler) {
         console.log("waiting to move");
@@ -75,11 +66,23 @@
             if (carLeft > (turnHere - 5) && carLeft < (turnHere + 5)) {
                 console.log("turning");
                 stop();
+                rotateCar();
                 moveCarDown();
             }
 
         }, 500);
 
+    }
+    var totalDegreesRotated = 0;
+    var rotateCar = function(direction) {
+        var degreesToIncrement;
+        if (direction == 0) {
+            degreesToIncrement = 90;
+        } else {
+            degreesToIncrement = -90;
+        }
+        totalDegreesRotated = totalDegreesRotated + degreesToIncrement;
+        document.querySelector(".car").style.transform = `rotate(${totalDegreesRotated}deg)`;
     }
 
     // Move down
@@ -116,6 +119,7 @@
             if (carTop > (turnHere - 5) && carTop < (turnHere + 5)) {
                 console.log("turning");
                 stop();
+                rotateCar();
                 moveCarLeft();
             }
 
@@ -152,6 +156,7 @@
             if (carLeft > (turnHere - 5) && carLeft < (turnHere + 5)) {
                 console.log("turning");
                 stop();
+                rotateCar();
                 moveCarUp();
             }
 
@@ -186,16 +191,17 @@
                     var top = parseInt(getComputedStyle(i1).top.replace("px", " "));
                     var height = parseInt(getComputedStyle(i1).height.replace("px", " "));
 
-                    var turnHere = (height / 4) + left;
+                    var turnHere = (height / 4) + top;
                     if (carTop > (turnHere - 5) && carTop < (turnHere + 5)) {
                         console.log("turning");
                         stop();
+                        rotateCar();
                     }
                 }, 500);
     }
 
    function start() {
-      intervalId = setInterval(moveCar, 50);
+      intervalId = setInterval(moveCarRight, 50);
    }
 
 	function stop() {
